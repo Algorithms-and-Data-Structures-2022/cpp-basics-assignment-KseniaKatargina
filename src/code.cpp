@@ -15,10 +15,19 @@ namespace assignment {
 
   // Task 2
   bool check_bit(int mask, int bit_pos) {
-    if ( mask < 0 || bit_pos < 0){
+    if ( mask >= 0 && bit_pos >= 0){
+      int bin = mask;
+      int i = 0;
+      while(i < bit_pos){
+        bin /= 2;
+        i++;
+      }
+      if (bin % 2 == 1) {
+        return true;
+      }
       return false;
     }
-
+    return false;
     }
 
   // Task 3
@@ -93,8 +102,20 @@ namespace assignment {
 
   // Task 9
   void print_kth_elements(int *arr, int length, int k, std::ostream &os) {
-
-    // Write your code here ...
+    if (arr == nullptr) {
+      os << "Invalid argument: arr\n";
+    }
+    if (length <= 0) {
+      os << "Invalid argument: length\n";
+    }
+    if (k <= 0) {
+      os << "Invalid argument: k\n";
+    }
+    if (arr != nullptr && length > 0 && k > 0) {
+      for (int i = 0; i < length; i+=k) {
+          os << arr[i] << "\t";
+      }
+    }
   }
 
 }  // namespace assignment
